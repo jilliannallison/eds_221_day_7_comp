@@ -11,7 +11,7 @@ library(lubridate)
 library(kableExtra)
 ```
 
-### Part 1: Data wrangling refresher 
+### Part 1: Data wrangling refresher
 
 ```{r}
 my_penguins <- penguins %>% 
@@ -79,4 +79,71 @@ semi_join_example <- semi_join(animals, sites, by = "location")
 
 ```{r}
 anti_join_example <- anti_join(animals, sites, by = "location")
+```
+
+### Dates and times with `lubridate` 
+
+```{r}
+my_date <- "03-15-1998"
+
+lubridate::mdy(my_date)
+
+my_date <- "11/7/2003" 
+
+lubridate::dmy(my_date)
+
+my_date <- "08-Jun-1974"
+
+lubridate::dmy(my_date)
+
+my_date <- "19610518"
+
+lubridate::ymd(my_date)
+```
+
+```{r}
+lubridate::ymd("1942-08-30")
+
+lubridate::mdy("09/22/84")
+
+lubridate::mdy("1/1/69")
+```
+
+```{r}
+time <- "2020-08-12 11:18"
+
+time <- ymd_hm(time)
+```
+
+```{r}
+# returns time for different time zone
+with_tz(time, "America/Los_Angeles")
+
+with_tz(time,"America/New_York")
+
+with_tz(time, "America/Anchorage")
+
+with_tz(time, "America/Denver")
+
+my_time <- ymd_hms(time)
+
+year(my_time)
+
+day(my_time)
+
+month(my_time)
+
+hour(my_time)
+
+minute(my_time)
+
+second(my_time)
+```
+
+```{r}
+my_birthday <- lubridate::ymd_hm("20000519 12:01")
+
+wday(my_birthday, label = TRUE)
+
+week(my_birthday)
 ```
